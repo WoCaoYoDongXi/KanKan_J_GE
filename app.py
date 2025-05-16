@@ -33,6 +33,6 @@ image = ee.ImageCollection("LANDSAT/LC09/C02/T1_L2") \
 ndvi = image.normalizedDifference(["SR_B5", "SR_B4"]).rename("NDVI")
 
 # 顯示地圖
-Map = geemap.Map(center=[25.03, 121.56], zoom=10)
+Map = geemap.Map(center=[120.5583462887228, 24.081653403304525], zoom=10)
 Map.addLayer(ndvi, {"min": 0, "max": 1, "palette": ["white", "green"]}, "NDVI")
 Map.to_streamlit(height=600)

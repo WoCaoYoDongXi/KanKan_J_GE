@@ -15,7 +15,7 @@ ee.Initialize(credentials)
 
 # 2. Streamlit 頁面設定與標題
 st.set_page_config(layout="wide")
-st.title(你看看這好東西啊)
+st.title("你看看這好東西啊🌏")
 
 # 3. 定義地理區域 (點)
 my_point = ee.Geometry.Point([120.5583462887228, 24.081653403304525])

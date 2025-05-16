@@ -61,7 +61,7 @@ palette = list(legend_dict.values())
 vis_params_clusters = {'min': 0, 'max': 9, 'palette': palette}
 
 # 6. 建立 geemap 地圖，加入 NDVI 與 Sentinel-2 分類圖層並啟動雙視窗比較
-Map = geemap.Map(center=[24.081653403304525, 120.5583462887228], zoom=8)  # 注意緯度經度順序
+Map = geemap.Map(center=[24.081653403304525, 120.5583462887228], zoom=10)  # 注意緯度經度順序
 
 # 左圖: Sentinel-2 真彩色
 left_layer = geemap.ee_tile_layer(my_image, vis_params, 'Sentinel-2 true color')

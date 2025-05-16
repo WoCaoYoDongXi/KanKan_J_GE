@@ -1,6 +1,6 @@
 import streamlit as st
 import ee
-from google.auth2 import service_account
+from google.oauth2 import service_account
 import geemap.foliumap as geemap
 
 # 從 Streamlit Secrets 讀取 GEE 服務帳戶金鑰 JSON

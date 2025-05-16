@@ -91,5 +91,5 @@ my_Map.add_legend(title='Land Cover Type', legend_dict=legend_dict, position='bo
 # 顯示地圖
 my_Map
 
-Map.to_streamlit(height=700)
+my_Map.to_streamlit(height=700)
 

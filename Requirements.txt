@@ -1,1 +1,4 @@
-GEE MAP
+streamlit
+earthengine-api
+geemap
+google-auth

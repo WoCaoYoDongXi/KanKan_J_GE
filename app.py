@@ -86,4 +86,4 @@ Map.split_map(left_layer, right_layer)
 Map.add_legend(title='Land Cover Type', legend_dict=legend_dict, position='bottomright')
 
 # 7. 將地圖輸出到 Streamlit
-Map.to_streamlit(height=700)
+Map.to_streamlit(height=600)

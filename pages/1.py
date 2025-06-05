@@ -62,7 +62,7 @@ my_trainedClassifier = ee.Classifier.smileCart().train(**{
   'features': trainingSample,
   'classProperty': label,
   'inputProperties': my_img.bandNames()
-
+})
 validationSample = validationSample.classify(my_trainedClassifier)
 validationAccuracy = validationSample.errorMatrix(label, 'classification')
 

@@ -44,6 +44,7 @@ legend_colors_hex = ['#FFFFFF', '#FFFF00', '#008000']
 left_layer = geemap.ee_tile_layer(ndvi_before, ndvi_vis, 'NDVI Before (2021)')
 right_layer = geemap.ee_tile_layer(ndvi_after, ndvi_vis, 'NDVI After (2022)')
 
+my_Map = geemap.Map()
 my_Map.centerObject(roi, 12)
 my_Map.split_map(left_layer, right_layer)
 my_Map.add_legend(title='NDVI', labels=['Low', 'Medium', 'High'], colors=legend_colors_hex)

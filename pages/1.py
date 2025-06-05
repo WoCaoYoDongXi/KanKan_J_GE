@@ -48,3 +48,4 @@ my_Map.centerObject(roi, 12)
 my_Map.split_map(left_layer, right_layer)
 my_Map.add_legend(title='NDVI', labels=['Low', 'Medium', 'High'], colors=legend_colors_hex)
 my_Map
+my_Map.to_streamlit(height=600)

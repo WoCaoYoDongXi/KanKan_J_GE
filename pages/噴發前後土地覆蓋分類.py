@@ -84,5 +84,5 @@ right_layer = geemap.ee_tile_layer(my_newimgClassified02, classVis, 'Classified0
 my_Map.centerObject(my_point, 11)
 my_Map.split_map(left_layer, right_layer)
 my_Map.add_legend(title='ESA Land Cover Type', builtin_legend='ESA_WorldCover')
-my_Map.to_streamlit(height=600)
+my_Map.to_streamlit(height=700)
 

@@ -62,20 +62,20 @@ my_Map.add_legend(title='NDWI', labels=['Low', 'Medium', 'High'], colors=legend_
 my_Map.to_streamlit(height=600)
 
 def get_ndwi_stats(ndwi_image, region):
-    stats = ndwi_image.reduceRegion(
+    stats02 = ndwi_image.reduceRegion(
         reducer=ee.Reducer.mean().combine(ee.Reducer.min(), '', True).combine(ee.Reducer.max(), '', True),
         geometry=region,
         scale=10,
         maxPixels=1e9
     )
-    return stats
+    return stats02
 
-stats_before = get_ndwi_stats(ndwi_before, roi)
-stats_after = get_ndwi_stats(ndwi_after, roi)
+stats02_before = get_ndwi_stats(ndwi_before, roi)
+stats02_after = get_ndwi_stats(ndwi_after, roi)
 
 # 將統計結果轉為 Python 字典
-ndwi_stats_before = stats_before.getInfo()
-ndwi_stats_after = stats_after.getInfo()
+ndwi_stats_before = stats02_before.getInfo()
+ndwi_stats_after = stats02_after.getInfo()
 
 # 使用 Streamlit 顯示統計數值
 st.subheader("NDWI 統計比較")

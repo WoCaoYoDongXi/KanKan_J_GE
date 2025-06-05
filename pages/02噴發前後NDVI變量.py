@@ -62,3 +62,29 @@ my_Map.centerObject(roi, 12)
 my_Map.split_map(left_layer, right_layer)
 my_Map.add_legend(title='NDVI', labels=['Low', 'Medium', 'High'], colors=legend_colors_hex)
 my_Map.to_streamlit(height=600)
+
+# 計算 NDVI 統計
+stats_before = get_ndvi_stats(ndvi_before, roi)
+stats_after = get_ndvi_stats(ndvi_after, roi)
+
+# 將統計結果轉為 Python 字典
+ndvi_stats_before = stats_before.getInfo()
+ndvi_stats_after = stats_after.getInfo()
+
+# 使用 Streamlit 顯示統計數值
+st.subheader("NDVI 統計比較")
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.markdown("**2021 年（火山前）**")
+    st.metric("平均 NDVI", f"{ndvi_stats_before['NDVI_mean']:.3f}")
+    st.metric("最小 NDVI", f"{ndvi_stats_before['NDVI_min']:.3f}")
+    st.metric("最大 NDVI", f"{ndvi_stats_before['NDVI_max']:.3f}")
+
+with col2:
+    st.markdown("**2022 年（火山後）**")
+    st.metric("平均 NDVI", f"{ndvi_stats_after['NDVI_mean']:.3f}")
+    st.metric("最小 NDVI", f"{ndvi_stats_after['NDVI_min']:.3f}")
+    st.metric("最大 NDVI", f"{ndvi_stats_after['NDVI_max']:.3f}")
+

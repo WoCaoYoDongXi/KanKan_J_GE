@@ -63,6 +63,15 @@ my_Map.split_map(left_layer, right_layer)
 my_Map.add_legend(title='NDVI', labels=['Low', 'Medium', 'High'], colors=legend_colors_hex)
 my_Map.to_streamlit(height=600)
 
+def get_ndvi_stats(ndvi_image, region):
+    stats = ndvi_image.reduceRegion(
+        reducer=ee.Reducer.mean().combine(ee.Reducer.min(), '', True).combine(ee.Reducer.max(), '', True),
+        geometry=region,
+        scale=10,
+        maxPixels=1e9
+    )
+    return stats
+
 # 計算 NDVI 統計
 stats_before = get_ndvi_stats(ndvi_before, roi)
 stats_after = get_ndvi_stats(ndvi_after, roi)

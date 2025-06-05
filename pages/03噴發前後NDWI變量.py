@@ -45,8 +45,8 @@ ndwi_after = get_ndwi('2022-04-01', '2022-08-31')
 
 # 可視化參數與圖層
 ndwi_vis = {
-    'min': 0,
-    'max': 0.8,
+    'min': 1,
+    'max': -1,
     'palette': ['brown', 'white', 'blue']
 }
 legend_colors_hex = ['#8B4513', '#FFFFFF', '#0000FF'] 

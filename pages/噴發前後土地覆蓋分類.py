@@ -11,6 +11,8 @@ credentials = service_account.Credentials.from_service_account_info(
 )
 ee.Initialize(credentials)
 
+st.set_page_config(layout="wide")
+st.title("噴發前後土地覆蓋分類🌏")
 # 定義 ROI 與視覺參數
 my_point = ee.Geometry.Point([-175.2049470, -21.1988048])
 vis_params = {'min':100, 'max': 3500, 'bands': ['B11',  'B8',  'B3']}

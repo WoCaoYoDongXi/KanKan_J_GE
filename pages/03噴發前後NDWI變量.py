@@ -37,7 +37,8 @@ def get_ndwi(start_date, end_date):
         .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20)) \
         .median() \
         .clip(roi)
-    ndwi = collection.normalizedDifference(['B8', 'B4']).rename('NDWI')
+    
+    ndwi = collection.normalizedDifference(['B3', 'B8']).rename('NDWI')
     return ndwi
 
 ndwi_before = get_ndwi('2021-11-01', '2021-12-31')

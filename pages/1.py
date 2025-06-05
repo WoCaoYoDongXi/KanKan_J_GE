@@ -17,6 +17,7 @@ ee.Initialize(credentials)
 st.set_page_config(layout="wide")
 st.title("你看看這好東西啊🌏")
 
+my_Map = geemap.Map()
 roi = my_Map.user_roi
 if roi is None:                                                     # If we have not defined any box region on the canvas,
     roi = ee.Geometry.BBox(-175.341105, -21.095057, -175.150307, -21.186537)    # then we define one that contains Pucallpa, Peru.

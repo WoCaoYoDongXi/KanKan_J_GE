@@ -12,7 +12,8 @@ credentials = service_account.Credentials.from_service_account_info(
 ee.Initialize(credentials)
 
 # 頁面設定
-st.set_page_config(layout="wide", page_title="NDVI 時間比較", page_icon="🌿")
+st.set_page_config(layout="wide")
+st.title("噴發前後NDVI變化🌏")
 
 # 移除 Streamlit 預設標頭與選單
 st.markdown("""

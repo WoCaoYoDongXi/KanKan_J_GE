@@ -32,5 +32,5 @@ my_img02 = (
 vis_params = {'min':100, 'max': 3500, 'bands': ['B11',  'B8',  'B3']}
 m2 = geemap.Map()
 m2.centerObject(my_point, 11)
-m2.addLayer(my_img, vis_params, "噴發前")
+m2.addLayer(my_img02, vis_params, "噴發後")
 m2.to_streamlit(height=600)

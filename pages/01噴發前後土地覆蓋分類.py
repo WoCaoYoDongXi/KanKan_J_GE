@@ -61,36 +61,30 @@ my_trainedClassifier = ee.Classifier.smileCart().train(**{
 my_newimg01 = (
     ee.ImageCollection('COPERNICUS/S2_HARMONIZED')
     .filterBounds(my_point)
-    .filterDate('2021-11-01', '2021-12-15')  # ✅ 改為乾季尾聲
+    .filterDate('2021-12-01', '2022-01-05')
     .sort('CLOUDY_PIXEL_PERCENTAGE')
     .first()
     .select('B.*')
 )
 my_newimgClassified01 = my_newimg01.classify(my_trainedClassifier)
 
-# 噴發後（推薦2022年5月 ~ 6月）
 my_newimg02 = (
     ee.ImageCollection('COPERNICUS/S2_HARMONIZED')
     .filterBounds(my_point)
-    .filterDate('2022-05-01', '2022-06-30')  # ✅ 改為乾季初期
+    .filterDate('2022-04-01', '2022-06-05')
     .sort('CLOUDY_PIXEL_PERCENTAGE')
     .first()
     .select('B.*')
 )
 my_newimgClassified02 = my_newimg02.classify(my_trainedClassifier)
 
-
-
+# 地圖顯示
 my_Map = geemap.Map()
+left_layer = geemap.ee_tile_layer(my_newimgClassified01, classVis, 'Classified01')
+right_layer = geemap.ee_tile_layer(my_newimgClassified02, classVis, 'Classified02')
 my_Map.centerObject(my_point, 11)
-my_Map.split_map(
-    geemap.ee_tile_layer(my_newimgClassified01.reproject(crs='EPSG:4326', scale=10), classVis, "Before"),
-    geemap.ee_tile_layer(my_newimgClassified02.reproject(crs='EPSG:4326', scale=10), classVis, "After")
-)
-my_Map.add_legend(title='ESA Land Cover', builtin_legend='ESA_WorldCover')
-
-# 插入 Streamlit 頁面
-st.subheader("土地覆蓋分類變化地圖")
+my_Map.split_map(left_layer, right_layer)
+my_Map.add_legend(title='ESA Land Cover Type', builtin_legend='ESA_WorldCover')
 my_Map.to_streamlit(height=700)
 # 讀取本地圖片
 img = Image.open("eruption1.png")

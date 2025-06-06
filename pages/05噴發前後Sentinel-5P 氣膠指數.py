@@ -2,7 +2,7 @@ import streamlit as st
 import ee
 from google.oauth2 import service_account
 import geemap.foliumap as geemap
-
+import geemap
 
 st.title("Sentinel-5P 氣膠指數 Split Map 比較")
 

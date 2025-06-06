@@ -41,8 +41,8 @@ def get_ndwi(start_date, end_date):
     ndwi = collection.normalizedDifference(['B3', 'B8']).rename('NDWI')
     return ndwi
 
-ndwi_before = get_ndwi('2021-11-01', '2021-12-31')
-ndwi_after = get_ndwi('2022-04-01', '2022-08-31')
+ndwi_before = get_ndwi('2021-09-16', '2021-09-20')
+ndwi_after = get_ndwi('2022-04-21', '2022-04-25')
 
 # 可視化參數與圖層
 ndwi_vis = {

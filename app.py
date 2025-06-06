@@ -6,13 +6,16 @@ st.title("🌋 東加火山災後地表變化分析")
 
 st.markdown(
     """
-    <video autoplay muted loop  width="720">
-        <source src="eruption.mp4" type="video/mp4">
-        您的瀏覽器不支援影片播放。
-    </video>
+    <iframe width="700" height="394"
+    src="https://www.youtube.com/embed/GLBy3_1tijM?autoplay=1&mute=1&loop=1&playlist=GLBy3_1tijM"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+    </iframe>
     """,
     unsafe_allow_html=True
 )
+
 
 st.markdown("#### 研究動機")
 st.write("""

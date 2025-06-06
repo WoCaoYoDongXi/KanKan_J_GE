@@ -93,5 +93,5 @@ from PIL import Image
 img = Image.open("eruption1.png")
 
 # 顯示圖片
-st.image(img, caption="用 PIL 讀取的圖片", use_column_width=True)
+st.image(img, caption="用 PIL 讀取的圖片",  use_container_width=True)
 

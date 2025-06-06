@@ -45,7 +45,7 @@ sample = my_img.addBands(my_lc).stratifiedSample(
     geometries=True
 ).randomColumn()
 
-my_trainedClassifier = ee.Classifier.smileCart().train(
+my_trainedClassifier = ee.Classifier.smileRandomForest(numberOfTrees=100).train(
     features=sample.filter('random <= 0.8'),
     classProperty='lc',
     inputProperties=my_img.bandNames()

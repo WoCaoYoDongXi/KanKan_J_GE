@@ -42,11 +42,11 @@ vis_params = {
     'palette': ['white', 'purple', 'blue', 'green', 'yellow', 'red']
 }
 m1 = geemap.Map()
-m1.centerObject(center[lon, lat], 11)
+m1.centerObject(region, 11)
 m1.addLayer(img1, vis_params, "噴發前")
 m1.to_streamlit(height=600)
 
 m2 = geemap.Map()
-m2.centerObject(center[lon, lat], 11)
-m2.addLayer(img2, vis_params, "噴發前")
+m2.centerObject(region, 11)
+m2.addLayer(img2, vis_params, "噴發後")
 m2.to_streamlit(height=600)

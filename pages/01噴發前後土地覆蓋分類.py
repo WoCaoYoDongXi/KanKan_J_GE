@@ -76,27 +76,28 @@ my_newimg02 = (
     .first()
     .select('B.*')
 )
-my_newimgClassified02 = my_newimg02.classify(my_trainedClassifier)
 
-my_newimgClassified01 = my_newimgClassified01.reproject({
-  crs: 'EPSG:4326'// 使用與原圖相同的UTM投影，或 EPSG:4326
-  scale: 10
-})
-my_newimgClassified02 = my_newimgClassified02.reproject({
-  crs: 'EPSG:4326'
-  scale: 10
-})
+Map = geemap.Map()
+Map.centerObject(my_point, 11)
 
+Map.split_map(
+    geemap.ee_tile_layer(my_newimgClassified01.reproject(crs='EPSG:32601', scale=10), classVis, "Before"),
+    geemap.ee_tile_layer(my_newimgClassified02.reproject(crs='EPSG:32601', scale=10), classVis, "After")
+)
+Map.add_legend(title='ESA Land Cover', builtin_legend='ESA_WorldCover')
 
-# 地圖顯示
-my_Map = geemap.Map()
-left_layer = geemap.ee_tile_layer(my_newimgClassified01, classVis, 'Classified01')
-right_layer = geemap.ee_tile_layer(my_newimgClassified02, classVis, 'Classified02')
-my_Map.centerObject(my_point, 11)
-my_Map.split_map(left_layer, right_layer)
-my_Map.add_legend(title='ESA Land Cover Type', builtin_legend='ESA_WorldCover')
-my_Map.to_streamlit(height=700)
+# 插入 Streamlit 頁面
+st.subheader("土地覆蓋分類變化地圖")
+Map.to_streamlit(height=700)
 
+Map = geemap.Map()
+Map.centerObject(my_point, 11)
+
+Map.split_map(
+    geemap.ee_tile_layer(my_newimgClassified01.reproject(crs='EPSG:32601', scale=10), classVis, "Before"),
+    geemap.ee_tile_layer(my_newimgClassified02.reproject(crs='EPSG:32601', scale=10), classVis, "After")
+)
+Map.add_legend(title='ESA Land Cover', builtin_legend='ESA_WorldCover')
 # 讀取本地圖片
 img = Image.open("eruption1.png")
 

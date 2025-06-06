@@ -26,6 +26,6 @@ my_img02 = (
 vis_params = {'min':100, 'max': 3500, 'bands': ['B11',  'B8',  'B3']}
 
 my_Map.centerObject(my_point, 11)
-my_Map.addLayer(my_img, vis_params, "Sentinel-2")
-my_Map.addLayer(my_img02, vis_params, "Sentinel-2")
+my_Map.addLayer(my_img, vis_params, "噴發前")
+my_Map.addLayer(my_img02, vis_params, "噴發後")
 my_Map.to_streamlit(height=600)

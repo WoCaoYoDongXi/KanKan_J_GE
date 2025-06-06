@@ -12,7 +12,7 @@ credentials = service_account.Credentials.from_service_account_info(
 ee.Initialize(credentials)
 
 
-st.title("Sentinel-5P 氣膠指數 Split Map 比較")
+st.title("噴發前後Sentinel-5P 氣膠指數變化")
 
 # 區域設定
 lon = -175.2
@@ -31,8 +31,8 @@ def get_aerosol_image(start_date, end_date):
         .clip(region)
     )
 
-img1 = get_aerosol_image('2022-04-21', '2022-04-25')
-img2 = get_aerosol_image('2021-09-16', '2021-09-20')
+img1 = get_aerosol_image('2021-09-16', '2021-09-20')
+img2 = get_aerosol_image('2022-04-21', '2022-04-25')
 
 vis_params = {
     'min': 0,
@@ -42,13 +42,13 @@ vis_params = {
 
 # Map 1
 m1 = geemap.Map(center=[lat, lon], zoom=10)
-m1.addLayer(img1, vis_params, "氣膠指數 時間段1")
+m1.addLayer(img1, vis_params, "噴發前")
 st.subheader("時間段 1: 2022-04-21 至 2022-04-25")
 m1.to_streamlit(height=400)
 
 # Map 2
 m2 = geemap.Map(center=[lat, lon], zoom=10)
-m2.addLayer(img2, vis_params, "氣膠指數 時間段2")
+m2.addLayer(img2, vis_params, "噴發後")
 st.subheader("時間段 2: 2021-09-16 至 2021-09-20")
 m2.to_streamlit(height=400)
 

@@ -62,7 +62,7 @@ my_newimgClassified01 = my_newimg01.classify(my_trainedClassifier)
 
 my_newimg02 = ee.ImageCollection('COPERNICUS/S2_HARMONIZED') \
     .filterBounds(my_point) \
-    .filterDate('2022-03-06', '2022-03-10') \
+    .filterDate('2022-03-01', '2022-03-05') \
     .sort('CLOUDY_PIXEL_PERCENTAGE') \
     .first() \
     .select('B.*')

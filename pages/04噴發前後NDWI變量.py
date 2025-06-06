@@ -28,7 +28,7 @@ st.markdown("""
 my_Map = geemap.Map()
 roi = my_Map.user_roi
 if roi is None:
-    roi = ee.Geometry.BBox(-175.341105, -21.095057, -175.150307, -21.186537)
+    roi = ee.Geometry.BBox(-175.229805, -21.143209, -175.196110, -21.183709)
 
 def get_ndwi(start_date, end_date):
     collection = ee.ImageCollection('COPERNICUS/S2_SR') \

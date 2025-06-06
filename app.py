@@ -12,7 +12,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 st.video(video_bytes)
-  ）
+)
 st.markdown("#### 研究動機")
 st.write("""
 當初在新聞上看見東加火山噴發的一瞬間，蕈狀雲將空照圖整個填滿，令我印象深刻。

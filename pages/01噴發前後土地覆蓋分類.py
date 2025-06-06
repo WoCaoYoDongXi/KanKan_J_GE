@@ -28,9 +28,9 @@ classVis = {
 my_img = (
     ee.ImageCollection('COPERNICUS/S2_HARMONIZED')
     .filterBounds(my_point)
-    .filterDate('2021-11-01', '2021-12-31')  # 靠近噴發前
-    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))  # 限制雲量
-    .median()
+    .filterDate('2021-11-01', '2021-12-31')
+    .sort('CLOUDY_PIXEL_PERCENTAGE')
+    .first()
     .select('B.*')
 )
 
@@ -41,7 +41,7 @@ label = 'lc'
 my_lc = my_lc.remap(classValues, remapValues, bandName='Map').rename(label).toByte()
 
 sample = my_img.addBands(my_lc).stratifiedSample(**{
-  'numPoints': 1000,
+  'numPoints': 500,
   'classBand': label,
   'region': my_img.geometry(),
   'scale': 10,
@@ -51,20 +51,19 @@ sample = my_img.addBands(my_lc).stratifiedSample(**{
 sample = sample.randomColumn()
 trainingSample = sample.filter('random <= 0.8')
 validationSample = sample.filter('random > 0.8')
-
-my_trainedClassifier = ee.Classifier.smileRandomForest(numberOfTrees=100).train(
-    features=trainingSample,
-    classProperty=label,
-    inputProperties=my_img.bandNames()
-)
+my_trainedClassifier = ee.Classifier.smileCart().train(**{
+  'features': trainingSample,
+  'classProperty': label,
+  'inputProperties': my_img.bandNames()
+})
 
 # 噴發前後的影像與分類
 my_newimg01 = (
     ee.ImageCollection('COPERNICUS/S2_HARMONIZED')
     .filterBounds(my_point)
     .filterDate('2021-11-01', '2021-12-31')
-    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))
-    .median()
+    .sort('CLOUDY_PIXEL_PERCENTAGE')
+    .first()
     .select('B.*')
 )
 my_newimgClassified01 = my_newimg01.classify(my_trainedClassifier)
@@ -86,8 +85,8 @@ right_layer = geemap.ee_tile_layer(my_newimgClassified02, classVis, 'Classified0
 my_Map.centerObject(my_point, 11)
 my_Map.split_map(left_layer, right_layer)
 my_Map.add_legend(title='ESA Land Cover Type', builtin_legend='ESA_WorldCover')
-
 my_Map.to_streamlit(height=700)
+
 # 讀取本地圖片
 img = Image.open("eruption1.png")
 
@@ -98,4 +97,3 @@ img02 = Image.open("eruption2.png")
 
 # 顯示圖片
 st.image(img02, caption="噴發後土地覆蓋分類",  use_container_width=True)
-

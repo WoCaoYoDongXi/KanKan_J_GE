@@ -62,7 +62,7 @@ my_trainedClassifier = ee.Classifier.smileRandomForest(numberOfTrees=100).train(
 my_newimg01 = (
     ee.ImageCollection('COPERNICUS/S2_HARMONIZED')
     .filterBounds(my_point)
-    .filterDate('2021-12-01', '2022-01-05')
+    .filterDate('2021-11-01', '2021-12-31')
     .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))
     .median()
     .select('B.*')
@@ -72,7 +72,7 @@ my_newimgClassified01 = my_newimg01.classify(my_trainedClassifier)
 my_newimg02 = (
     ee.ImageCollection('COPERNICUS/S2_HARMONIZED')
     .filterBounds(my_point)
-    .filterDate('2022-04-01', '2022-06-05')
+    .filterDate('2022-04-01', '2022-08-31')
     .sort('CLOUDY_PIXEL_PERCENTAGE')
     .first()
     .select('B.*')

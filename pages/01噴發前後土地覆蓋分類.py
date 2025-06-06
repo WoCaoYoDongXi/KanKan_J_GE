@@ -28,9 +28,9 @@ classVis = {
 my_img = (
     ee.ImageCollection('COPERNICUS/S2_HARMONIZED')
     .filterBounds(my_point)
-    .filterDate('2021-06-01', '2021-08-31')
-    .sort('CLOUDY_PIXEL_PERCENTAGE')
-    .first()
+    .filterDate('2021-11-01', '2021-12-31')  # 靠近噴發前
+    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))  # 限制雲量
+    .median()
     .select('B.*')
 )
 
@@ -62,9 +62,9 @@ my_trainedClassifier = ee.Classifier.smileRandomForest(numberOfTrees=100).train(
 my_newimg01 = (
     ee.ImageCollection('COPERNICUS/S2_HARMONIZED')
     .filterBounds(my_point)
-    .filterDate('2021-12-01', '2021-12-31')
-    .sort('CLOUDY_PIXEL_PERCENTAGE')
-    .first()
+    .filterDate('2021-12-01', '2022-01-05')
+    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))
+    .median()
     .select('B.*')
 )
 my_newimgClassified01 = my_newimg01.classify(my_trainedClassifier)

@@ -10,7 +10,7 @@ st.markdown(
         <source src="eruption.mp4" type="video/mp4">
     </video>
     """,
-    unsafe_allow_html=True
+    unsafe_allow_html=True.
 st.video(video_bytes)
 )
 st.markdown("#### 研究動機")

@@ -15,8 +15,10 @@ my_img = (
     .first()
     .select('B.*')
 )
+vis_params = {'min':100, 'max': 3500, 'bands': ['B11',  'B8',  'B3']}
 my_Map.addLayer(my_img, vis_params, "噴發前")
 my_Map.to_streamlit(height=600)
+
 my_img02 = (
     ee.ImageCollection('COPERNICUS/S2_HARMONIZED')
     .filterBounds(my_point)

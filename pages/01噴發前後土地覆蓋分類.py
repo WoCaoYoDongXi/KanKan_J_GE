@@ -78,6 +78,16 @@ my_newimg02 = (
 )
 my_newimgClassified02 = my_newimg02.classify(my_trainedClassifier)
 
+my_newimgClassified01 = my_newimgClassified01.reproject({
+  crs: 'EPSG:32601',  // 使用與原圖相同的UTM投影，或 EPSG:4326
+  scale: 10
+})
+my_newimgClassified02 = my_newimgClassified02.reproject({
+  crs: 'EPSG:32601',
+  scale: 10
+})
+
+
 # 地圖顯示
 my_Map = geemap.Map()
 left_layer = geemap.ee_tile_layer(my_newimgClassified01, classVis, 'Classified01')

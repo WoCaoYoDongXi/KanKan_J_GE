@@ -1,5 +1,6 @@
 import streamlit as st
 import ee
+from google.oauth2 import service_account
 import geemap.foliumap as geemap
 
 

@@ -41,11 +41,12 @@ vis_params = {
     'max': 2,
     'palette': ['white', 'purple', 'blue', 'green', 'yellow', 'red']
 }
+m1 = geemap.Map()
+m1.centerObject(center[lon, lat], 11)
+m1.addLayer(img1, vis_params, "噴發前")
+m1.to_streamlit(height=600)
 
-# 建立 geemap SplitMap
-split_map = geemap.SplitMap(left_layer=img1, right_layer=img2, vis_params=vis_params)
-split_map.set_center(lon, lat, 8)
-split_map.addLayer(region, {'color': 'red'}, '區域範圍')
-
-# 顯示 split map
-split_map.to_streamlit(height=600)
+m2 = geemap.Map()
+m2.centerObject(center[lon, lat], 11)
+m2.addLayer(img2, vis_params, "噴發前")
+m2.to_streamlit(height=600)

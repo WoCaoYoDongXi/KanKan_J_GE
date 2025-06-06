@@ -79,17 +79,19 @@ my_newimg02 = (
 )
 my_newimgClassified02 = my_newimg02.classify(my_trainedClassifier)
 
-# 插入 Streamlit 頁面
-st.subheader("土地覆蓋分類變化地圖")
-Map.to_streamlit(height=700)
 
-Map = geemap.Map()
-Map.centerObject(my_point, 11)
-Map.split_map(
+
+my_Map = geemap.Map()
+my_Map.centerObject(my_point, 11)
+my_Map.split_map(
     geemap.ee_tile_layer(my_newimgClassified01.reproject(crs='EPSG:4326', scale=10), classVis, "Before"),
     geemap.ee_tile_layer(my_newimgClassified02.reproject(crs='EPSG:4326', scale=10), classVis, "After")
 )
-Map.add_legend(title='ESA Land Cover', builtin_legend='ESA_WorldCover')
+my_Map.add_legend(title='ESA Land Cover', builtin_legend='ESA_WorldCover')
+
+# 插入 Streamlit 頁面
+st.subheader("土地覆蓋分類變化地圖")
+Map.to_streamlit(height=700)
 # 讀取本地圖片
 img = Image.open("eruption1.png")
 

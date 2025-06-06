@@ -91,7 +91,7 @@ my_Map.add_legend(title='ESA Land Cover', builtin_legend='ESA_WorldCover')
 
 # 插入 Streamlit 頁面
 st.subheader("土地覆蓋分類變化地圖")
-Map.to_streamlit(height=700)
+my_Map.to_streamlit(height=700)
 # 讀取本地圖片
 img = Image.open("eruption1.png")
 

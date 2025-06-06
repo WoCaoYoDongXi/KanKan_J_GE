@@ -2,6 +2,7 @@ import streamlit as st
 import ee
 from google.oauth2 import service_account
 import geemap.foliumap as geemap
+from PIL import Image
 
 # GEE 認證
 service_account_info = st.secrets["GEE_SERVICE_ACCOUNT"]
@@ -86,5 +87,11 @@ my_Map.split_map(left_layer, right_layer)
 my_Map.add_legend(title='ESA Land Cover Type', builtin_legend='ESA_WorldCover')
 my_Map.to_streamlit(height=700)
 
-st.image("images/eruption1.png", caption="火山爆發前後比較圖", use_column_width=True)
+from PIL import Image
+
+# 讀取本地圖片
+img = Image.open("images/eruption01.png")
+
+# 顯示圖片
+st.image(img, caption="用 PIL 讀取的圖片", use_column_width=True)
 

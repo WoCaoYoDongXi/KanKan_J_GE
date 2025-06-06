@@ -87,11 +87,14 @@ my_Map.split_map(left_layer, right_layer)
 my_Map.add_legend(title='ESA Land Cover Type', builtin_legend='ESA_WorldCover')
 my_Map.to_streamlit(height=700)
 
-from PIL import Image
-
 # 讀取本地圖片
 img = Image.open("eruption1.png")
 
 # 顯示圖片
 st.image(img, caption="噴發前土地覆蓋分類",  use_container_width=True)
+# 讀取本地圖片
+img = Image.open("eruption２.png")
+
+# 顯示圖片
+st.image(img, caption="噴發後土地覆蓋分類",  use_container_width=True)
 

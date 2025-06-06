@@ -93,5 +93,5 @@ from PIL import Image
 img = Image.open("eruption1.png")
 
 # 顯示圖片
-st.image(img, caption="噴發前大面積TreeCover地區",  use_container_width=True)
+st.image(img, caption="噴發前土地覆蓋分類",  use_container_width=True)
 

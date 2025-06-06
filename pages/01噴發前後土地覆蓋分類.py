@@ -41,7 +41,7 @@ label = 'lc'
 my_lc = my_lc.remap(classValues, remapValues, bandName='Map').rename(label).toByte()
 
 sample = my_img.addBands(my_lc).stratifiedSample(**{
-  'numPoints': 500,
+  'numPoints': 1000,
   'classBand': label,
   'region': my_img.geometry(),
   'scale': 10,
@@ -62,7 +62,7 @@ my_trainedClassifier = ee.Classifier.smileRandomForest(numberOfTrees=100).train(
 my_newimg01 = (
     ee.ImageCollection('COPERNICUS/S2_HARMONIZED')
     .filterBounds(my_point)
-    .filterDate('2021-12-01', '2022-01-05')
+    .filterDate('2021-12-01', '2022-12-31')
     .sort('CLOUDY_PIXEL_PERCENTAGE')
     .first()
     .select('B.*')

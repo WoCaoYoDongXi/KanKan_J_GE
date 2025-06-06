@@ -28,7 +28,7 @@ classVis = {
 my_img = (
     ee.ImageCollection('COPERNICUS/S2_HARMONIZED')
     .filterBounds(my_point)
-    .filterDate('2021-06-01', '2021-08-31')
+    .filterDate('2021-10-01', '2021-11-30')
     .sort('CLOUDY_PIXEL_PERCENTAGE')
     .first()
     .select('B.*')

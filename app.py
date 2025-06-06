@@ -8,10 +8,10 @@ st.markdown(
     """
     <video autoplay muted loop width="700">
         <source src="eruption.mp4" type="video/mp4">
+        您的瀏覽器不支援 HTML5 影片播放。
     </video>
     """,
-    unsafe_allow_html=True.
-st.video(video_bytes)
+    unsafe_allow_html=True
 )
 st.markdown("#### 研究動機")
 st.write("""

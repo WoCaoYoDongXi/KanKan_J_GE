@@ -76,6 +76,7 @@ my_newimg02 = (
     .first()
     .select('B.*')
 )
+my_newimgClassified02 = my_newimg02.classify(my_trainedClassifier)
 
 Map = geemap.Map()
 Map.centerObject(my_point, 11)

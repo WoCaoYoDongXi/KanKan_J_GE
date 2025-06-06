@@ -22,7 +22,7 @@ my_img02 = (
     .sort('CLOUDY_PIXEL_PERCENTAGE')#排序含雲量後取第一張含雲量最低的
     .first()
     .select('B.*')
-
+)
 vis_params = {'min':100, 'max': 3500, 'bands': ['B11',  'B8',  'B3']}
 
 my_Map.centerObject(my_point, 11)

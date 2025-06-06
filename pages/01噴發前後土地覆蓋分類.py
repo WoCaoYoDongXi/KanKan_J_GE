@@ -61,7 +61,7 @@ my_trainedClassifier = ee.Classifier.smileCart().train(**{
 my_newimg01 = (
     ee.ImageCollection('COPERNICUS/S2_HARMONIZED')
     .filterBounds(my_point)
-    .filterDate('2021-11-01', '2021-12-31')
+    .filterDate('2021-12-01', '2021-12-31')
     .sort('CLOUDY_PIXEL_PERCENTAGE')
     .first()
     .select('B.*')
@@ -71,7 +71,7 @@ my_newimgClassified01 = my_newimg01.classify(my_trainedClassifier)
 my_newimg02 = (
     ee.ImageCollection('COPERNICUS/S2_HARMONIZED')
     .filterBounds(my_point)
-    .filterDate('2022-06-01', '2022-08-31')
+    .filterDate('2022-04-01', '2022-08-31')
     .sort('CLOUDY_PIXEL_PERCENTAGE')
     .first()
     .select('B.*')

@@ -28,7 +28,7 @@ st.markdown("""
 my_Map = geemap.Map()
 roi = my_Map.user_roi
 if roi is None:
-    roi = ee.Geometry.BBox(-175.341105, -21.095057, -175.150307, -21.186537)
+    roi = ee.Geometry.BBox(-175.337059, -21.114421, -175.240979, -21.183575)
 
 # 計算 NDVI
 def get_ndvi(start_date, end_date):

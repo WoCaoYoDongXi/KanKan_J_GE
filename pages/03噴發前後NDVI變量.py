@@ -96,3 +96,4 @@ with col2:
     st.metric("最小 NDVI", f"{ndvi_stats_after['NDVI_min']:.3f}")
     st.metric("最大 NDVI", f"{ndvi_stats_after['NDVI_max']:.3f}")
 
+st.markdown("""從NDVI數值來看，其平均值大幅下降0.192。且最大值也大幅下降0.241""")

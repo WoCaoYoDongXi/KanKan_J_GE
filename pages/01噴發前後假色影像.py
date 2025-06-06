@@ -4,8 +4,8 @@ from google.oauth2 import service_account
 import geemap.foliumap as geemap
 
 
-st.write("## 噴發日期選擇以火山噴發前後Tongatapu島上空含雲量最少之時而定")
-st.write("## 噴發前：21/09/16-20;噴發後：22/04/21-25")
+st.text("## 噴發日期選擇以火山噴發前後Tongatapu島上空含雲量最少之時而定")
+st.text("## 噴發前：21/09/16-20;噴發後：22/04/21-25")
 my_point = ee.Geometry.Point([-175.2049470, -21.1988048])
 st.write("## 火山噴發前")
 my_img = (

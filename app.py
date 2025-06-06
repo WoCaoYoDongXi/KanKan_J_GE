@@ -3,6 +3,11 @@ import streamlit as st
 st.set_page_config(page_title="東加火山災後遙測分析", layout="wide")
 
 st.title("🌋 東加火山災後地表變化分析")
+
+video_file = open('eruption.mp4', 'rb')  # 確保與 app.py 同資料夾，或用相對路徑
+video_bytes = video_file.read()
+
+st.video(video_bytes)
 st.markdown("#### 研究動機")
 st.write("""
 當初在新聞上看見東加火山噴發的一瞬間，蕈狀雲將空照圖整個填滿，令我印象深刻。

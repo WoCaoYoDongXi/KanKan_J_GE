@@ -6,9 +6,9 @@ import geemap.foliumap as geemap
 st.title("Sentinel-5P 氣膠指數 Split Map 比較")
 
 # 區域設定
-lon = st.number_input("輸入經度 (Longitude)", value=-175.2, format="%.4f")
-lat = st.number_input("輸入緯度 (Latitude)", value=-21.1, format="%.4f")
-radius_km = st.number_input("輸入半徑 (公里)", value=50, min_value=1, max_value=200)
+lon = -175.2
+lat = -21.1
+radius_km =30
 
 region = ee.Geometry.Point([lon, lat]).buffer(radius_km * 1000)
 

@@ -6,7 +6,7 @@ st.title("🌋 東加火山災後地表變化分析")
 
 st.markdown(
     """
-    <video autoplay muted loop controls width="720">
+    <video autoplay muted loop  width="720">
         <source src="eruption.mp4" type="video/mp4">
         您的瀏覽器不支援影片播放。
     </video>

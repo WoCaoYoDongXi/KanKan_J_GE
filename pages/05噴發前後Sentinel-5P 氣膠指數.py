@@ -2,13 +2,6 @@ import streamlit as st
 import ee
 import geemap
 
-# 初始化 Earth Engine
-try:
-    ee.Initialize()
-except Exception:
-    ee.Authenticate()
-    ee.Initialize()
-
 st.title("Sentinel-5P 氣膠指數 Split Map 比較")
 
 # 區域設定

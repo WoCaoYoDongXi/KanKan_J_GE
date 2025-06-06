@@ -86,3 +86,5 @@ my_Map.split_map(left_layer, right_layer)
 my_Map.add_legend(title='ESA Land Cover Type', builtin_legend='ESA_WorldCover')
 my_Map.to_streamlit(height=700)
 
+st.image("images/eruption1.png", caption="火山爆發前後比較圖", use_column_width=True)
+

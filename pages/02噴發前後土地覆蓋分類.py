@@ -88,3 +88,11 @@ img02 = Image.open("eruption2.png")
 
 # 顯示圖片
 st.image(img02, caption="噴發後土地覆蓋分類",  use_container_width=True)
+
+st.markdown("""
+**觀察結果：**
+
+- A區部分 Trees 分類轉變為 Grassland  
+- B區部分 Build-up 分類轉變為 Grassland  
+- C區大面積 Openwater 分類轉變為 Barren / sparse vegetation
+""")

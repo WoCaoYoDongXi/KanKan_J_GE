@@ -1,78 +1,40 @@
 import streamlit as st
-import ee
-from google.oauth2 import service_account
-import geemap.foliumap as geemap
 
-# 1. GEE 認證：使用服務帳戶從 Streamlit Secrets 取得憑證
-service_account_info = st.secrets["GEE_SERVICE_ACCOUNT"]
+st.set_page_config(page_title="東加火山災後遙測分析", layout="wide")
 
-credentials = service_account.Credentials.from_service_account_info(
-    service_account_info,
-    scopes=["https://www.googleapis.com/auth/earthengine"]
-)
+st.title("🌋 東加火山災後地表變化分析")
+st.markdown("#### 研究動機")
+st.write("""
+當初在新聞上看見東加火山噴發的一瞬間，蕈狀雲將空照圖整個填滿，令我印象深刻。
+在課程中，也學習到如何運用圖資訓練及觀察土地覆蓋類別。
+因此本報告以東加火山噴發前後的衛星影像與土地覆蓋分類為基礎，
+結合 NDVI 與 NDWI 指數，分析災後地表的變化，
+作為遙測災後監測的實證案例。
+""")
 
-ee.Initialize(credentials)
+st.markdown("#### 背景說明")
+st.write("""
+2022年1月15日，位於南太平洋的東加海底火山（Hunga Tonga–Hunga Haʻapai）
+發生了近百年來最劇烈的一次火山噴發。
+此次爆發引發海嘯與大量火山灰，
+不僅對當地基礎建設與居民生活造成破壞，
+也對周遭陸地與海洋生態系統產生重大影響。
+""")
 
-# 2. Streamlit 頁面設定與標題
-st.set_page_config(layout="wide")
-st.title("你看看這好東西啊🌏")
+st.markdown("#### 研究問題")
+st.write("""
+1. 火山噴發前後，當地的土地覆蓋類型是否產生明顯改變？
+2. 土地覆蓋類別與植生（NDVI）/水體（NDWI）指數能否彼此驗證，證明災後地表環境變化？
+""")
 
-# 3. 定義地理區域 (點)
-my_point = ee.Geometry.Point([120.5583462887228, 24.081653403304525])
+st.markdown("#### 方法與流程")
+st.write("""
+1. 預設研究範圍於東加地區最大島嶼 Tongatapu  
+2. 採用 ESA WorldCover 10m v200 圖資，並使用 SmileCart 分類器進行分類訓練  
+3. 訓練後製作噴發前後之土地覆蓋類別，並尋找較大面積之類別更動區域  
+4. 在島嶼上指定研究觀察區域範圍  
+5. 運用植生指數（NDVI）及水體指數（NDWI）去驗證地表變化  
+""")
 
-# 5. Sentinel-2 影像取樣與分類分析
-my_image = (
-    ee.ImageCollection('COPERNICUS/S2_HARMONIZED')
-    .filterBounds(my_point)
-    .filterDate('2021-01-01', '2022-01-01')
-    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))
-    .sort('CLOUDY_PIXEL_PERCENTAGE')
-    .first()
-    .select('B.*')
-)
-
-vis_params = {'min': 100, 'max': 3500, 'bands': ['B4', 'B3', 'B2']}
-
-training_samples = my_image.sample(
-    region=my_image.geometry(),
-    scale=10,
-    numPixels=10000,
-    seed=0,
-    geometries=True,
-)
-
-clusterer = ee.Clusterer.wekaKMeans(10).train(training_samples)
-result_clusters = my_image.cluster(clusterer)
-
-legend_dict = {
-    'zero'  : '#e6194b',
-    'one'   : '#3cb44b',
-    'two'   : '#ffe119',
-    'three' : '#4363d8',
-    'four'  : '#f58231',
-    'five'  : '#911eb4',
-    'six'   : '#46f0f0',
-    'seven' : '#f032e6',
-    'eight' : '#bcf60c',
-    'nine'  : '#fabebe',
-}
-
-palette = list(legend_dict.values())
-vis_params_clusters = {'min': 0, 'max': 9, 'palette': palette}
-
-# 6. 建立 geemap 地圖，加入 NDVI 與 Sentinel-2 分類圖層並啟動雙視窗比較
-Map = geemap.Map(center=[24.081653403304525, 120.5583462887228], zoom=10)  # 注意緯度經度順序
-
-# 左圖: Sentinel-2 真彩色
-left_layer = geemap.ee_tile_layer(my_image, vis_params, 'Sentinel-2 true color')
-
-# 右圖: Weka KMeans 分類結果
-right_layer = geemap.ee_tile_layer(result_clusters, vis_params_clusters, 'Weka KMeans classified')
-
-Map.split_map(left_layer, right_layer)
-
-# 加入分類圖例
-Map.add_legend(title='Land Cover Type', legend_dict=legend_dict, position='bottomright')
-
-# 7. 將地圖輸出到 Streamlit
-Map.to_streamlit(height=500)
+st.markdown("---")
+st.info("👉 後續將展示分類圖、指數分析與觀察成果。")

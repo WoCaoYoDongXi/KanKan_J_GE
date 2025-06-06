@@ -90,7 +90,7 @@ my_Map.to_streamlit(height=700)
 from PIL import Image
 
 # 讀取本地圖片
-img = Image.open("images/eruption01.png")
+img = Image.open("images/eruption1.png")
 
 # 顯示圖片
 st.image(img, caption="用 PIL 讀取的圖片", use_column_width=True)

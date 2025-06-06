@@ -1,12 +1,16 @@
 import streamlit as st
 import ee
-import geemap
+from google.oauth2 import service_account
+import geemap.foliumap as geemap
+from PIL import Image
+# GEE 認證
+service_account_info = st.secrets["GEE_SERVICE_ACCOUNT"]
+credentials = service_account.Credentials.from_service_account_info(
+    service_account_info,
+    scopes=["https://www.googleapis.com/auth/earthengine"]
+)
+ee.Initialize(credentials)
 
-try:
-    ee.Initialize()
-except Exception:
-    ee.Authenticate()
-    ee.Initialize()
 
 st.title("Sentinel-5P 氣膠指數 Split Map 比較")
 

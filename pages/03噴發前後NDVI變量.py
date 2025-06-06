@@ -96,4 +96,10 @@ with col2:
     st.metric("最小 NDVI", f"{ndvi_stats_after['NDVI_min']:.3f}")
     st.metric("最大 NDVI", f"{ndvi_stats_after['NDVI_max']:.3f}")
 
-st.markdown("""從NDVI數值來看，其平均值大幅下降0.192。且最大值也大幅下降0.241""")
+st.markdown("""
+**觀察結果：**
+
+- 從NDVI數值來看，其平均值大幅下降0.192。且最大值也大幅下降0.241。
+- 平均值下降：表示整體地區的植被健康狀況明顯惡化。
+- 最大值下降:最健康的植被也受到了負面影響。
+""")

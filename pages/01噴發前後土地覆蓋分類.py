@@ -93,8 +93,8 @@ img = Image.open("eruption1.png")
 # 顯示圖片
 st.image(img, caption="噴發前土地覆蓋分類",  use_container_width=True)
 # 讀取本地圖片
-img = Image.open("eruption２.png")
+img02 = Image.open("eruption２.png")
 
 # 顯示圖片
-st.image(img, caption="噴發後土地覆蓋分類",  use_container_width=True)
+st.image(img02, caption="噴發後土地覆蓋分類",  use_container_width=True)
 

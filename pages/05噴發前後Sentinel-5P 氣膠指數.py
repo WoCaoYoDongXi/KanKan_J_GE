@@ -38,6 +38,7 @@ vis_params = {
     'min': 0,
     'max': 2,
     'palette': ['white', 'purple', 'blue', 'green', 'yellow', 'red']
+    'opacity': 0.7  # 透明度：0（完全透明）～1（完全不透明）
 }
 
 # Map 1
@@ -71,6 +72,7 @@ vis_params = {
     'min': 0.0,
     'max': 0.005,
     'palette': ['white', 'yellow', 'orange', 'red', 'purple', 'black']
+    'opacity': 0.7  # 透明度：0（完全透明）～1（完全不透明）
 }
 
 # Map 1：噴發前

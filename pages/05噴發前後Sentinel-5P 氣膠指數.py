@@ -3,6 +3,8 @@ import ee
 from google.oauth2 import service_account
 import geemap.foliumap as geemap
 from PIL import Image
+import datetime
+
 # GEE 認證
 service_account_info = st.secrets["GEE_SERVICE_ACCOUNT"]
 credentials = service_account.Credentials.from_service_account_info(

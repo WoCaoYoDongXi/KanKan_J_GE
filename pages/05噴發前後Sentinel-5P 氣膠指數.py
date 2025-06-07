@@ -14,7 +14,7 @@ credentials = service_account.Credentials.from_service_account_info(
 ee.Initialize(credentials)
 
 
-st.title("噴發前後Sentinel-5P 數據變化")
+st.title("噴發前後Sentinel-5P 氣溶膠指數變化")
 
 # 區域設定
 lon = -175.2
@@ -46,13 +46,13 @@ vis_params = {
 # Map 1
 m1 = geemap.Map(center=[lat, lon], zoom=10)
 m1.addLayer(img1, vis_params, "噴發前")
-st.subheader("噴發前氣膠指數")
+st.subheader("噴發前")
 m1.to_streamlit(height=400)
 
 # Map 2
 m2 = geemap.Map(center=[lat, lon], zoom=10)
 m2.addLayer(img2, vis_params, "噴發後")
-st.subheader("噴發前氣膠指數")
+st.subheader("噴發後")
 m2.to_streamlit(height=400)
 
 

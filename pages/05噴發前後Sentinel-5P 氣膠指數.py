@@ -103,11 +103,10 @@ st.title("兩週頻率 Sentinel-5P SO₂ 影像比較 (透明度 0.75)")
 m = geemap.Map(center=[lat, lon], zoom=8)
 
 for i in range(len(dates)):
-    img = images_list.get(i)
-    img_id = img.get('system:index').getInfo()  # 取得 image id
-    img_obj = ee.Image(img_id)
+    img = ee.Image(images_list.get(i))  # 轉 ee.Image
+    img_id = img.get('system:index').getInfo()
     date_str = dates[i]
-    m.addLayer(img_obj, vis_params, f"SO₂: {date_str}", opacity=0.75)
+    m.addLayer(img, vis_params, f"SO₂: {date_str}", opacity=0.75)
 
 st.subheader("圖層列表可於左側切換")
 m.to_streamlit(height=600)

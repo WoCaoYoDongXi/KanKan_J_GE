@@ -118,7 +118,8 @@ opacity = 0.75
 
 for i, img in enumerate(biweekly_collection.toList(biweekly_collection.size()).getInfo()):
     # 重新載入 Image (因 toList 會回傳 dict，不是 ee.Image)
-    img_obj = ee.Image(img['id'])
+    img_obj = ee.Image(img)
+    m3.addLayer(img_obj, vis_params, f"SO2: {date_str}", opacity=opacity)
     date_str = dates[i]
     m3.addLayer(img_obj, vis_params, f"SO2: {date_str}", opacity=opacity)
 

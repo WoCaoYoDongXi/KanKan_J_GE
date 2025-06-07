@@ -57,12 +57,9 @@ m2.to_streamlit(height=400)
 
 
 
-
-
 start_date2 = '2021-09-01'
 end_date2 = '2022-04-30'
 
-# 取得 Sentinel-5P SO2 影像集合
 collection = (
     ee.ImageCollection('COPERNICUS/S5P/OFFL/L3_SO2')
     .filterDate(start_date2, end_date2)
@@ -70,7 +67,6 @@ collection = (
     .select('SO2_column_number_density')
 )
 
-# 每兩週取平均
 def add_biweekly_mean(collection, start, end):
     current = ee.Date(start)
     stop = ee.Date(end)
@@ -82,25 +78,20 @@ def add_biweekly_mean(collection, start, end):
             .filterDate(current, next_date)
             .mean()
             .set('system:time_start', current.millis())
+            .set('system:index', current.format('YYYYMMdd'))  # 這行很重要，補上index
             .clip(region)
         )
         images.append(img)
         current = next_date
     return ee.ImageCollection(images)
 
-biweekly_collection = add_biweekly_mean(collection, start_date2, end_date2)
+biweekly_collection = add_biweekly_mean(collection, start_date, end_date)
 
-# 取得時間字串列表
-def get_dates(ic):
-    dates_millis = ic.aggregate_array('system:time_start').getInfo()
-    return [ee.Date(m).format('YYYY-MM-dd').getInfo() for m in dates_millis]
+dates_millis = biweekly_collection.aggregate_array('system:time_start').getInfo()
+dates = [ee.Date(d).format('YYYY-MM-dd').getInfo() for d in dates_millis]
 
-dates = get_dates(biweekly_collection)
-
-# 轉成列表方便迴圈
 images_list = biweekly_collection.toList(biweekly_collection.size())
 
-# 視覺化參數
 vis_params = {
     'min': 0.0,
     'max': 0.005,
@@ -109,18 +100,17 @@ vis_params = {
 
 st.title("兩週頻率 Sentinel-5P SO₂ 影像比較 (透明度 0.75)")
 
-# 建立地圖物件
 m = geemap.Map(center=[lat, lon], zoom=8)
 
-# 依序加入每個時段圖層並標示日期，透明度0.75
 for i in range(len(dates)):
-    img_dict = images_list.get(i).getInfo()  # 取得 dict
-    img_id = img_dict['id']                   # 取 image id
-    img_obj = ee.Image(img_id)                # 轉回 Image
+    img = images_list.get(i)
+    img_id = img.get('system:index').getInfo()  # 取得 image id
+    img_obj = ee.Image(img_id)
     date_str = dates[i]
     m.addLayer(img_obj, vis_params, f"SO₂: {date_str}", opacity=0.75)
 
 st.subheader("圖層列表可於左側切換")
 m.to_streamlit(height=600)
+
 
 

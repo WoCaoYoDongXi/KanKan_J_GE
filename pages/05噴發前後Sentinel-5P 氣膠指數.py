@@ -64,6 +64,7 @@ m1.add_legend(
     title="S5P 吸收性氣溶膠指數 (AAI)",
     labels=["0", "0.4", "0.8", "1.2", "1.6", "2+"],
     colors=["white", "purple", "blue", "green", "yellow", "red"]
+)
 st.subheader("噴發後")
 m2.to_streamlit(height=400)
 

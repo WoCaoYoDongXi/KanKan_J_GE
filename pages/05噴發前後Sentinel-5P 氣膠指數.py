@@ -17,7 +17,7 @@ st.title("噴發前後Sentinel-5P 數據變化")
 # 區域設定
 lon = -175.2
 lat = -21.1
-radius_km = 30
+radius_km = 20
 
 region = ee.Geometry.Point([lon, lat]).buffer(radius_km * 1000)
 

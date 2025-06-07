@@ -37,7 +37,7 @@ img2 = get_aerosol_image('2022-04-21', '2022-04-25')
 vis_params = {
     'min': 0,
     'max': 2,
-    'palette': ['white', 'purple', 'blue', 'green', 'yellow', 'red']
+    'palette': ['white', 'purple', 'blue', 'green', 'yellow', 'red'],
     'opacity': 0.6 
 }
 
@@ -71,7 +71,7 @@ img4 = get_so2_image('2022-04-21', '2022-04-25')  # 噴發後
 vis_params = {
     'min': 0.0,
     'max': 0.005,
-    'palette': ['white', 'yellow', 'orange', 'red', 'purple', 'black']
+    'palette': ['white', 'yellow', 'orange', 'red', 'purple', 'black'],
     'opacity': 0.6 
 }
 

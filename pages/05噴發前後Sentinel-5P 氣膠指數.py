@@ -85,7 +85,7 @@ def add_biweekly_mean(collection, start, end):
         current = next_date
     return ee.ImageCollection(images)
 
-biweekly_collection = add_biweekly_mean(collection, start_date, end_date)
+biweekly_collection = add_biweekly_mean(collection, start_date2, end_date2)
 
 dates_millis = biweekly_collection.aggregate_array('system:time_start').getInfo()
 dates = [ee.Date(d).format('YYYY-MM-dd').getInfo() for d in dates_millis]

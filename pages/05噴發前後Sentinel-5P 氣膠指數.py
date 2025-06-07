@@ -72,7 +72,7 @@ vis_params = {
     'min': 0.0,
     'max': 0.005,
     'palette': ['white', 'yellow', 'orange', 'red', 'purple', 'black'],
-    'opacity': 0.6 
+    'opacity': 0.75 
 }
 
 # Map 1：噴發前

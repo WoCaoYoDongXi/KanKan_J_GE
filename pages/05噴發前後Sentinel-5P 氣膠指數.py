@@ -49,8 +49,15 @@ vis_params = {
 m1 = geemap.Map(center=[lat, lon], zoom=10)
 m1.addLayer(img1, vis_params, "噴發前")
 m1.add_legend(
-    title="S5P 吸收性氣溶膠指數 (AAI)",
-    labels=["0", "0.4", "0.8", "1.2", "1.6", "2+"],
+    title="S5P 吸收性氣膠指數 (AAI)",
+    labels=[
+        "0",
+        "0.4",
+        "0.8",
+        "1.2",
+        "1.6",
+        "2+"
+    ],
     colors=["white", "purple", "blue", "green", "yellow", "red"]
 )
 

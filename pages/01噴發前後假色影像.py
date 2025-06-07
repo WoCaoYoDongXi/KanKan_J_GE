@@ -5,7 +5,7 @@ import geemap.foliumap as geemap
 
 
 st.info("日期選擇以噴發前後之研究範圍上空含雲量最少的期間")
-st.info("噴發前：21/09/16-20;噴發後：22/04/21-25")
+st.info("噴發前：2021/09/16-20;噴發後：2022/04/21-25")
 st.markdown("---")
 my_point = ee.Geometry.Point([-175.2049470, -21.1988048])
 st.write("## 火山噴發前")

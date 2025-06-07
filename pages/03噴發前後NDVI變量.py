@@ -14,7 +14,7 @@ ee.Initialize(credentials)
 
 # 頁面設定
 st.set_page_config(layout="wide")
-st.title("噴發前後NDVI變化🌏")
+st.title("噴發前後NDVI變化🍃")
 
 # 移除 Streamlit 預設標頭與選單
 st.markdown("""

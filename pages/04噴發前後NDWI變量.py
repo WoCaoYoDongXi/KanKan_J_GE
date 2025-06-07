@@ -94,3 +94,12 @@ with col2:
     st.metric("平均 NDWI", f"{ndwi_stats_after['NDWI_mean']:.3f}")
     st.metric("最小 NDWI", f"{ndwi_stats_after['NDWI_min']:.3f}")
     st.metric("最大 NDWI", f"{ndwi_stats_after['NDWI_max']:.3f}")
+
+st.markdown("""
+**觀察結果：**
+
+- 從NDWI數值來看，其平均值顯著下降了0.090，且最大值也大幅下降了0.586。
+- 平均值下降：表示全區水體面積或水體反射性明顯降低。
+- 最大值下降:即使是在最濕潤的區域，水體指標也大幅減弱，
+- 根據上方觀察結果，初步推測開放水體可能因火山噴發後所產生的火山灰與氣體，使土地覆蓋分類改變，也使NDWI數值下降。
+""")

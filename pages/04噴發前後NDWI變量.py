@@ -57,7 +57,7 @@ right_layer = geemap.ee_tile_layer(ndwi_after, ndwi_vis, 'NDWI After (2022)')
 
 # 顯示地圖
 my_Map = geemap.Map()
-my_Map.centerObject(roi, 12)
+my_Map.centerObject(roi, 14)
 my_Map.split_map(left_layer, right_layer)
 my_Map.add_legend(title='NDWI', labels=['Low', 'Medium', 'High'], colors=legend_colors_hex)
 my_Map.to_streamlit(height=600)

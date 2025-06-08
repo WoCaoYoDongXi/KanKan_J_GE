@@ -49,13 +49,14 @@ legend_colors_hex = ['#FFFFFF', '#800080', '#0000FF', '#008000', '#FFFF00', '#FF
 # Map 1
 m1 = geemap.Map(center=[lat, lon], zoom=10)
 m1.addLayer(img1, vis_params, "噴發前")
+m1.addLayer(img2, vis_params, "噴發後")
 m1.add_legend(
     title="S5P 吸收性氣膠指數 (AAI)",
     labels=["0", "0.4", "0.8", "1.2", "1.6", "2+"],
     colors=legend_colors_hex
 )
 
-st.subheader("噴發前")
+st.subheader("噴發前後比較")
 m1.to_streamlit(height=400)
 
 # Map 2

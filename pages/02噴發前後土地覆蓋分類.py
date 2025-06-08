@@ -13,7 +13,7 @@ ee.Initialize(credentials)
 
 # Streamlit 介面設定
 st.set_page_config(layout="wide")
-st.title("分類圖資變化比較 🌋")
+st.title("噴發前後土地覆蓋分類🛰️")
 
 # 參數與位置設定
 my_point = ee.Geometry.Point([-175.2049470, -21.1988048])

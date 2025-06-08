@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(page_title="東加火山災後遙測分析", layout="wide")
 
-st.title("🌋 東加火山災後地表變化分析")
+st.title("🌋 東加火山噴發前後地表變化分析")
 
 st.markdown(
     """
